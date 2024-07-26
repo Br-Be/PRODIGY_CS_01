@@ -1,0 +1,43 @@
+def Encrypting(text, shift_value):
+    Encrypted_text = ""  
+    for char in text:
+        if char.isalpha():
+            Encrypted_char = chr(ord(char) + (shift_value%26))
+            Encrypted_text += Encrypted_char
+        else:
+            Encrypted_text += char
+    return Encrypted_text
+
+def Decrypting(text, shift_value):
+    Decrypted_text = ""  
+    for char in text:
+        if char.isalpha():
+            Decrypted_char = chr(ord(char) - (shift_value%26))
+            Decrypted_text += Decrypted_char
+        else:
+            Decrypted_text += char
+    return Decrypted_text
+
+
+while True:
+        choice = input("Select E for encryption, D for decryption or Q for stopping the execution, your choice: ")
+
+        if choice == 'Q':
+            break
+        if choice not in ['E', 'D']:
+            print("It is an invalid choice, please enter a valid choice")
+            continue
+
+        message = input("enter your message: ")
+        try:
+            shift_value = int(input("enter shift value: "))
+        except: 
+            print("It is an invalid shift value, please enter a valid shift value.")
+            continue  
+
+        if choice == 'E':
+            result = Encrypting(message, shift_value)
+            print(f"Encrypted message: {result}")
+        else:
+            result = Decrypting(message, shift_value)
+            print(f"Decrypted message: {result}")
